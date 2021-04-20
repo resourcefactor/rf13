@@ -10,10 +10,26 @@ app_icon = "octicon octicon-file-directory"
 app_color = "grey"
 app_email = "sales@resourcefactors.com"
 app_license = "MIT"
+app_logo_url = '/assets/rf13/images/rflogo.png'
 
 # Includes in <head>
 # ------------------
 
+app_include_css = "/assets/rf13/css/whitelabel_app.css"
+# app_include_js = "/assets/whitelabel/js/whitelabel.js"
+
+# include js, css files in header of web template
+web_include_css = "/assets/rf13/css/whitelabel_web.css"
+web_include_js = "/assets/rf13/js/whitelabel.js"
+
+
+website_context = {
+    "favicon": "/assets/rf13/images/rflogo.png",
+    "splash_image": "/assets/rf13/images/rflogo.png"
+}
+after_migrate = ['rf13.api.whitelabel_patch']
+
+boot_session = "rf13.api.boot_session"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/rf13/css/rf13.css"
 # app_include_js = "/assets/rf13/js/rf13.js"

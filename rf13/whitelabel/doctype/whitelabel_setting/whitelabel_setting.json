@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "creation": "2021-04-19 18:00:58.753514",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "logo_height",
+  "logo_width",
+  "company_description_section",
+  "description"
+ ],
+ "fields": [
+  {
+   "description": "In pixel",
+   "fieldname": "logo_height",
+   "fieldtype": "Data",
+   "label": "Logo Height"
+  },
+  {
+   "description": "In pixel",
+   "fieldname": "logo_width",
+   "fieldtype": "Data",
+   "label": "Logo Width"
+  },
+  {
+   "fieldname": "company_description_section",
+   "fieldtype": "Section Break",
+   "label": "Company Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "HTML Editor",
+   "label": "Description"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2021-04-20 16:32:20.386456",
+ "modified_by": "Administrator",
+ "module": "Whitelabel",
+ "name": "Whitelabel Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
