@@ -3,11 +3,13 @@
 
 import frappe
 from frappe import _
-from frappe.utils import getdate, get_time, today
+from frappe.utils import getdate, get_time, today, flt
 from erpnext.stock.stock_ledger import update_entries_after
 from erpnext.accounts.utils import update_gl_entries_after
 from frappe.utils.background_jobs import enqueue
 from frappe.model.document import Document
+from erpnext.stock.get_item_details import get_conversion_factor
+from erpnext.stock.utils import get_incoming_rate
 
 class CorrectItemValuationRate(Document):
 	@frappe.whitelist()
@@ -84,3 +86,37 @@ class CorrectItemValuationRate(Document):
 		frappe.msgprint(_("Reposting of SLE and GLE started"), alert=True)
 		enqueue(method=self.reposted_entries,queue='long', timeout=10000, is_async=True)
 
+	@frappe.whitelist()
+	def correct_supplier_rate(self):
+		if not self.reposting_start_date:
+			frappe.throw(_("Please set Repost start date"))
+		purchase_receipt = frappe.get_list("Purchase Receipt", filters={'posting_date': ['>=', self.reposting_start_date],'docstatus': 1}, fields=['name'])
+		for res in purchase_receipt:
+			doc = frappe.get_doc("Purchase Receipt", res.name)
+			total_qty = doc.get('total_qty')
+			total_raw_cost = 0
+			for d in doc.get("supplied_items"):
+				if d.rm_item_code:
+					if frappe.db.get_value('Item', d.rm_item_code, 'is_stock_item'):
+						rate = get_incoming_rate({
+							"item_code": d.rm_item_code,
+							"warehouse": doc.supplier_warehouse,
+							"posting_date": doc.posting_date,
+							"posting_time": doc.posting_time,
+							"qty": -1 * d.consumed_qty,
+							"serial_no": d.serial_no
+						})
+
+						if rate > 0:
+							d.rate = rate
+
+					amount = flt(flt(d.consumed_qty) * flt(d.rate), d.precision("amount"))
+					d.amount = amount
+					d.db_update()
+					total_raw_cost += amount
+			for item in doc.get('items'):
+				qty_in_stock_uom = flt(item.qty * item.conversion_factor)
+				item.rm_supp_cost += flt((total_raw_cost / total_qty) * item.qty)
+				item.valuation_rate = ((item.base_net_amount + item.item_tax_amount + item.rm_supp_cost
+										+ flt(item.landed_cost_voucher_amount)) / qty_in_stock_uom)
+				item.db_update()
