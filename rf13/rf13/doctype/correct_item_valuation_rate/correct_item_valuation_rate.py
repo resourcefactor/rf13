@@ -116,7 +116,7 @@ class CorrectItemValuationRate(Document):
 					total_raw_cost += amount
 			for item in doc.get('items'):
 				qty_in_stock_uom = flt(item.qty * item.conversion_factor)
-				item.rm_supp_cost += flt((total_raw_cost / total_qty) * item.qty)
+				item.rm_supp_cost += flt((total_raw_cost / total_qty) * item.qty) if total_qty else 0
 				item.valuation_rate = ((item.base_net_amount + item.item_tax_amount + item.rm_supp_cost
 										+ flt(item.landed_cost_voucher_amount)) / qty_in_stock_uom)
 				item.db_update()
