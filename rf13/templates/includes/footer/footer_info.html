@@ -1,6 +1,9 @@
 <div class="footer-info">
 	<div class="row">
 		<div class="footer-col-left col-sm-6 col-12">
+			{%- if footer_logo -%}
+				<img src="{{ footer_logo }}" alt="Footer Logo" class="footer-logo" style="min-width: 2rem">
+			{%- endif -%}
 			{% if copyright %}
 			&copy; {{ copyright }}
 			{% endif %}
