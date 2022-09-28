@@ -2,44 +2,20 @@
 
 {% macro email_login_body() -%}
 <div class="page-card-body">
-	<div class="form-group">
-		<label class="form-label sr-only" for="login_email">{{ login_label or _("Email")}}</label>
-		<div class="email-field">
-			<input type="text" id="login_email" class="form-control"
-				placeholder="{% if login_name_placeholder %}{{ login_name_placeholder  }}{% else %}{{ _('jane@example.com') }}{% endif %}"
-				required autofocus>
-
-			<svg class="field-icon email-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-				xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M2.5 7.65149V15.0757C2.5 15.4374 2.64367 15.7842 2.8994 16.04C3.15513 16.2957 3.50198 16.4394 3.86364 16.4394H16.1364C16.498 16.4394 16.8449 16.2957 17.1006 16.04C17.3563 15.7842 17.5 15.4374 17.5 15.0757V7.65149"
-					stroke="#74808B" stroke-miterlimit="10" stroke-linecap="square" />
-				<path
-					d="M17.5 7.57572V5.53026C17.5 5.1686 17.3563 4.82176 17.1006 4.56603C16.8449 4.31029 16.498 4.16663 16.1364 4.16663H3.86364C3.50198 4.16663 3.15513 4.31029 2.8994 4.56603C2.64367 4.82176 2.5 5.1686 2.5 5.53026V7.57572L10 10.8333L17.5 7.57572Z"
-					stroke="#74808B" stroke-miterlimit="10" stroke-linecap="square" />
-			</svg>
-		</div>
+	 <div class="form-group">
+		<input type="text" id="login_email" class="form-control" placeholder="jane@example.com" required autofocus>
 	</div>
-
-	<div class="form-group">
-		<label class="form-label sr-only" for="login_password">{{ _("Password") }}</label>
-		<div class="password-field">
-			<input type="password" id="login_password" class="form-control" placeholder="•••••"
-				autocomplete="current-password" required>
-
-			<svg class="field-icon password-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-				xmlns="http://www.w3.org/2000/svg">
-				<path fill-rule="evenodd" clip-rule="evenodd"
-					d="M10.0961 1.93768H10.0264C8.94806 1.92763 7.90976 2.34591 7.13951 3.10075C6.36866 3.85619 5.9294 4.88687 5.91833 5.96612L5.91831 5.96612V5.97124V6.52695H4.3125C3.20793 6.52695 2.3125 7.42238 2.3125 8.52695V16.0165C2.3125 17.121 3.20793 18.0165 4.3125 18.0165H15.7356C16.8401 18.0165 17.7356 17.121 17.7356 16.0165V8.52695C17.7356 7.42238 16.8401 6.52695 15.7356 6.52695H14.1297V6.04576C14.1397 4.96742 13.7214 3.92913 12.9666 3.15888C12.2112 2.38803 11.1805 1.94877 10.1012 1.9377V1.93768H10.0961ZM13.1297 6.52695V6.04336V6.03838H13.1297C13.1378 5.22428 12.8222 4.44029 12.2524 3.85881C11.6831 3.27793 10.9067 2.94667 10.0934 2.93768H10.024H10.019V2.93765C9.20491 2.92955 8.42092 3.24512 7.83944 3.81497C7.25856 4.38423 6.9273 5.1607 6.91831 5.9739V6.52695H13.1297ZM4.3125 7.52695C3.76022 7.52695 3.3125 7.97467 3.3125 8.52695V16.0165C3.3125 16.5687 3.76022 17.0165 4.3125 17.0165H15.7356C16.2879 17.0165 16.7356 16.5687 16.7356 16.0165V8.52695C16.7356 7.97467 16.2879 7.52695 15.7356 7.52695H4.3125ZM10.0242 13.2384C10.5581 13.2384 10.9909 12.8056 10.9909 12.2717C10.9909 11.7377 10.5581 11.3049 10.0242 11.3049C9.49023 11.3049 9.05738 11.7377 9.05738 12.2717C9.05738 12.8056 9.49023 13.2384 10.0242 13.2384ZM11.9909 12.2717C11.9909 13.3579 11.1104 14.2384 10.0242 14.2384C8.93794 14.2384 8.05738 13.3579 8.05738 12.2717C8.05738 11.1854 8.93794 10.3049 10.0242 10.3049C11.1104 10.3049 11.9909 11.1854 11.9909 12.2717Z"
-					fill="#74808B" />
-			</svg>
-			<span toggle="#login_password" class="toggle-password text-muted">{{ _('Show') }}</span>
+	<div class="form-group" style="margin-bottom: 0px !important;">
+		<input type="password" id="login_password" class="form-control" placeholder="Password" required>
+		<div style="margin-top: 10px;font-size: 12px;">
+			<input type="checkbox" toggle="#login_password" class="toggle-password" style="text-align:center; vertical-align:middle; margin-top: 0px !important;float: left;" >
+			<span style="float: left;">Show Password</span>
 		</div>
 	</div>
 
 	<p class="forgot-password-message">
 		<a href="#forgot">{{ _("Forgot Password?") }}</a></p>
-</div>
+
 
 <div class="page-card-actions">
 	<button class="btn btn-sm btn-primary btn-block btn-login" type="submit">
@@ -50,70 +26,256 @@
 		{{ _("Login with LDAP") }}</button>
 	{% endif %}
 </div>
+	{%- if not disable_signup -%}
+		<div class="text-center sign-up-message" style="margin-top: 90px;">
+			{{ _("Don't have an account?") }}
+			<a href="#signup">{{ _("Sign up") }}</a>
+		</div>
+	{%- endif -%}
+	</div>
+
 {% endmacro %}
 
 {% block head_include %}
-<link type="text/css" rel="stylesheet" href="/assets/css/login.css?ver={{ build_version }}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="./style.css">
+
 {% endblock %}
 
 {% macro logo_section() %}
 <div class="page-card-head">
 	<img class="app-logo" src="{{ logo }}">
-	<h4>{{ _('Login') }}</h4>
+	<h4>{{ _('Login')}}</h4>
 </div>
 {% endmacro %}
 
+{% macro forgot_section() %}
+<div class="page-card-head">
+	<img class="app-logo" src="{{ logo }}">
+	<h4>{{ _('Forgot Password')}}</h4>
+</div>
+{% endmacro %}
+{% macro signup_section() %}
+<div class="page-card-head">
+	<img class="app-logo" src="{{ logo }}">
+	<h4>{{ _('Sign Up')}}</h4>
+</div>
+{% endmacro %}
+
+
+
 {% block page_content %}
-<!-- {{ for_test }} -->
-<div>
-	<noscript>
-		<div class="text-center my-5">
-			<h4>{{ _("Javascript is disabled on your browser") }}</h4>
-			<p class="text-muted">
-				{{ _("You need to enable JavaScript for your app to work.") }}<br>{{ _("To enable it follow the instructions in the following link: {0}").format("<a href='https://enable-javascript.com/'>enable-javascript.com</a></p>") }}
+
+<style>
+.navbar-brand img {
+    display: inline-block;
+    max-width: 150px;
+    max-height: 50px !important;
+}
+.for-login .page-card-head, .for-forgot .page-card-head, .for-signup .page-card-head, .for-email-login .page-card-head {
+    margin: 0 auto;
+    text-align: center;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: 0 !important
+}
+
+.forgot-password-message {
+    float: right;
+}
+.for-login .page-card-head, .for-forgot .page-card-head, .for-signup .page-card-head, .for-email-login .page-card-head {
+    margin: 0 auto;
+    text-align: center;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+}
+.box-form_bottom {
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex: 1 1 100%;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.box-form {
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex: 1 1 100%;
+    align-items: stretch;
+    justify-content: space-between;
+    min-height: 600px;
+}
+@media (max-width: 980px) {
+  .box-form {
+    flex-flow: wrap;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+}
+.box-form div {
+  height: auto;
+}
+.box-form .left {
+  color: #FFFFFF;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  max-width: 839px;
+  border-radius: var(--border-radius-md);
+  max-height: 550px;
+}
+.box-form_bottom .bottom .overlay {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay h1 {
+  font-size: 10vmax;
+  line-height: 1;
+  font-weight: 900;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.box-form .left .overlay span p {
+  margin-top: 30px;
+  font-weight: 900;
+}
+.box-form .left .overlay span a {
+  background: #3b5998;
+  color: #FFFFFF;
+  margin-top: 10px;
+  padding: 14px 50px;
+  border-radius: 100px;
+  display: inline-block;
+  box-shadow: 0 3px 6px 1px #042d4657;
+}
+.box-form .left .overlay span a:last-child {
+  background: #1dcaff;
+  margin-left: 30px;
+}
+.box-form .right {
+  padding: 40px;
+  overflow: hidden;
+  width: 400px;
+  padding-top: 65px;
+  padding-bottom: 65px;
+  background-color: #f5f5f5;
+  box-shadow: var(--shadow-base);
+  border-radius: var(--border-radius-md);
+  max-height: 550px;
+
+}
+@media (max-width: 980px) {
+  .box-form .right {
+    width: 100%;
+  }
+}
+.box-form .right h5 {
+  font-size: 6vmax;
+  line-height: 0;
+}
+.box-form .right p {
+  font-size: 14px;
+  color: #B0B3B9;
+}
+.box-form .right .inputs {
+  overflow: hidden;
+}
+.box-form .right input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 18px;
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+	border: none;
+	color: var(--text-color);
+	font-size: var(--text-base);
+	margin-bottom: 1rem;
+}
+.box-form .right .remember-me--forget-password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box-form .right .remember-me--forget-password input {
+  margin: 0;
+  margin-right: 7px;
+  width: auto;
+}
+.box-form .right button {
+  float: right;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 50px;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+}
+@media (max-width: 500px){
+.box-form{
+	align-content: normal;
+    align-items: normal;
+}
+.box-form .left{ display: none}
+}
+</style>
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+			<div>
+				<img src="{{ container_image }}" style="width: 100%; height: 100%;">
+			</div>
 		</div>
-	</noscript>
+	</div>
 
-
-	<section class='for-login'>
-		<div class="login-content page-card">
-			{{ logo_section() }}
-			<form class="form-signin form-login" role="form">
-				{%- if social_login -%}
-				<div class="page-card-body">
-					<div class="social-logins text-center">
-						<div class="social-login-buttons">
-							{% for provider in provider_logins %}
-							<div class="login-button-wrapper">
-								<a href="{{ provider.auth_url }}"
-									class="btn btn-block btn-default btn-sm btn-login-option btn-{{ provider.name }}">
-									{% if provider.icon %}
-										{{ provider.icon }}
-									{% endif %}
-									{{ _("Login With {0}").format(provider.provider_name) }}</a>
+	<div class="right">
+		<section class='for-login'>
+			<div class="login-content page-card">
+				{{ logo_section() }}
+				<form class="form-signin form-login" role="form">
+					{%- if social_login -%}
+					<div class="page-card-body">
+						<div class="social-logins text-center">
+							<div class="social-login-buttons">
+								{% for provider in provider_logins %}
+								<div class="login-button-wrapper">
+									<a href="{{ provider.auth_url }}"
+										class="btn btn-block btn-default btn-sm btn-login-option btn-{{ provider.name }}">
+										{% if provider.icon %}
+											{{ provider.icon }}
+										{% endif %}
+										{{ _("Login With {0}").format(provider.provider_name) }}</a>
+								</div>
+								{% endfor %}
+								<p class="text-muted login-divider">{{ _("or") }}</p>
 							</div>
-							{% endfor %}
-							<p class="text-muted login-divider">{{ _("or") }}</p>
 						</div>
+						<a href="#email"
+							class="btn btn-block btn-default btn-sm btn-login-option">
+						 {{ _("Login With Email") }}</a>
 					</div>
-					<a href="#email"
-						class="btn btn-block btn-default btn-sm btn-login-option">
-					 {{ _("Login With Email") }}</a>
-				</div>
-				{% else %}
-					{{ email_login_body() }}
-				{%- endif -%}
-			</form>
-		</div>
-		{%- if not disable_signup -%}
-		<div class="text-center sign-up-message">
-			{{ _("Don't have an account?") }}
-			<a href="#signup">{{ _("Sign up") }}</a>
-		</div>
-		{%- endif -%}
-	</section>
+					{% else %}
+						{{ email_login_body() }}
+					{%- endif -%}
 
-	{%- if social_login -%}
+				</form>
+			</div>
+		</section>
+		{%- if social_login -%}
 	<section class='for-email-login'>
 		<div class="login-content page-card">
 			{{ logo_section() }}
@@ -131,7 +293,7 @@
 	{%- endif -%}
 	<section class='for-signup {{ "signup-disabled" if disable_signup else "" }}'>
 		<div class="login-content page-card">
-			{{ logo_section() }}
+			{{ signup_section() }}
 			{%- if not disable_signup -%}
 			<form class="form-signin form-signup hide" role="form">
 				<div class="page-card-body">
@@ -156,11 +318,11 @@
 				</div>
 			</form>
 			{%- else -%}
-			<div class='page-card-head'>
+			<div class='page-card-head mb-2'>
 				<span class='indicator gray'>{{_("Signup Disabled")}}</span>
+				<p class="text-muted text-normal sign-up-message mt-1 mb-8">{{_("Signups have been disabled for this website.")}}</p>
+				<div><a href='/' class='btn btn-primary btn-md'>{{ _("Home") }}</a></div>
 			</div>
-			<p>{{_("Signups have been disabled for this website.")}}</p>
-			<div><a href='/' class='btn btn-primary btn-sm'>{{ _("Home") }}</a></div>
 			{%- endif -%}
 		</div>
 
@@ -168,25 +330,12 @@
 
 	<section class='for-forgot'>
 		<div class="login-content page-card">
+			{{ forgot_section() }}
 			<form class="form-signin form-forgot hide" role="form">
-				<div class="page-card-head">
-					<img class="app-logo" src="{{ forgot }}">
-					<h4>{{ _('Forgot Password') }}</h4>
-				</div>
 				<div class="page-card-body">
 					<div class="email-field">
 						<input type="email" id="forgot_email" class="form-control"
 							placeholder="{{ _('Email Address') }}" required autofocus>
-						<svg class="field-icon email-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M2.5 7.65149V15.0757C2.5 15.4374 2.64367 15.7842 2.8994 16.04C3.15513 16.2957 3.50198 16.4394 3.86364 16.4394H16.1364C16.498 16.4394 16.8449 16.2957 17.1006 16.04C17.3563 15.7842 17.5 15.4374 17.5 15.0757V7.65149"
-								stroke="#74808B" stroke-miterlimit="10" stroke-linecap="square" />
-							<path
-								d="M17.5 7.57572V5.53026C17.5 5.1686 17.3563 4.82176 17.1006 4.56603C16.8449 4.31029 16.498 4.16663 16.1364 4.16663H3.86364C3.50198 4.16663 3.15513 4.31029 2.8994 4.56603C2.64367 4.82176 2.5 5.1686 2.5 5.53026V7.57572L10 10.8333L17.5 7.57572Z"
-								stroke="#74808B" stroke-miterlimit="10" stroke-linecap="square" />
-						</svg>
-
 					</div>
 				</div>
 				<div class="page-card-actions">
@@ -200,20 +349,21 @@
 			</form>
 		</div>
 	</section>
-	<section class='branding' id="style-5">
-		{% if banner_image %}
-			<div style="text-align:center">
-				<img style ="width:175px" src="{{ banner_image }}">
-			</div>
-		{% endif %}
-		{% if white_description %}
-			<div class="force-overflow" style="text-align:justify">
-				{{ white_description }}
-			</div>
-		{% endif %}
-	</section>
+	</div>
 </div>
+{%- if container_content -%}
+	<div class="box-form_bottom">
+		<div class="bottom">
+			<div class="overlay">
+				<div style="color: black;">
+					{{ container_content }}
+				</div>
+			</div>
+		</div>
+	</div>
+{%- endif -%}
 {% endblock %}
+
 
 {% block script %}
 <script>{% include "templates/includes/login/login.js" %}</script>
