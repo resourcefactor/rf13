@@ -20,7 +20,7 @@ app_include_css = "/assets/rf13/css/whitelabel_app.css"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/rf13/css/whitelabel_web.css"
-web_include_js = "/assets/rf13/js/whitelabel.js"
+# web_include_js = "/assets/rf13/js/whitelabel.js"
 
 
 website_context = {
